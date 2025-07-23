@@ -1,0 +1,37 @@
+<div class="container">
+    <h2>👥 Lista de Empleados</h2>
+
+    <button routerLink="/employees/crear" class="btn btn-primary">
+        ➕ Crear nuevo empleado
+    </button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Posición</th>
+                <th>Departamento</th>
+                <th>Salario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.phone }}</td>
+                <td>{{ employee.position }}</td>
+                <td>{{ employee.department }}</td>
+                <td>Q{{ employee.salary }}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="editEmployee(employee.id)">Editar</button>
+                    <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,132 @@
+<div class="container">
+  <h2>{{ isEditMode ? '✏️ Editar Venta' : '➕ Crear Venta' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="client_id">Cliente *</label>
+        <select
+          id="client_id"
+          formControlName="client_id"
+          class="form-control"
+          [class.is-invalid]="isInvalid('client_id')"
+        >
+          <option value="">Seleccionar cliente</option>
+          <option *ngFor="let client of clients" [value]="client.id">
+            {{ client.name }}
+          </option>
+        </select>
+        <div *ngIf="isInvalid('client_id')" class="invalid-feedback">
+          El cliente es requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="user_id">Usuario *</label>
+        <select
+          id="user_id"
+          formControlName="user_id"
+          class="form-control"
+          [class.is-invalid]="isInvalid('user_id')"
+        >
+          <option value="">Seleccionar usuario</option>
+          <option *ngFor="let user of users" [value]="user.id">
+            {{ user.name }}
+          </option>
+        </select>
+        <div *ngIf="isInvalid('user_id')" class="invalid-feedback">
+          El usuario es requerido
+        </div>
+      </div>
+    </div>
+
+    <div class="items-section">
+      <h3>Productos</h3>
+      
+      <div formArrayName="items">
+        <div *ngFor="let item of itemsFormArray.controls; let i = index" 
+             [formGroupName]="i" class="item-row">
+          
+          <div class="form-group">
+            <label>Producto *</label>
+            <select 
+              formControlName="product_id" 
+              (change)="updatePrice(i)"
+              class="form-control"
+              [class.is-invalid]="isItemInvalid(i, 'product_id')"
+            >
+              <option value="">Seleccionar producto</option>
+              <option *ngFor="let product of products" [value]="product.id">
+                {{ product.name }} - Q{{ (+product.price).toFixed(2) }} (Stock: {{ product.stock }})
+              </option>
+            </select>
+            <div *ngIf="isItemInvalid(i, 'product_id')" class="invalid-feedback">
+              El producto es requerido
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Cantidad *</label>
+            <input 
+              type="number" 
+              formControlName="quantity"
+              [max]="getMaxStock(i)"
+              class="form-control"
+              [class.is-invalid]="isItemInvalid(i, 'quantity')"
+              min="1"
+            >
+            <div *ngIf="isItemInvalid(i, 'quantity')" class="invalid-feedback">
+              Cantidad inválida
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Precio</label>
+            <input 
+              type="number" 
+              formControlName="price"
+              class="form-control"
+              readonly
+              step="0.01"
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Subtotal</label>
+            <div class="subtotal">
+              Q{{ ((item.get('quantity')?.value || 0) * (item.get('price')?.value || 0)).toFixed(2) }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button 
+              type="button" 
+              class="btn btn-danger btn-sm" 
+              (click)="removeItem(i)"
+              [disabled]="itemsFormArray.length === 1"
+            >
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary" (click)="addItem()">
+        ➕ Agregar Producto
+      </button>
+    </div>
+
+    <div class="total-section">
+      <h3>Total: Q{{ calculateTotal().toFixed(2) }}</h3>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{ isEditMode ? 'Actualizar' : 'Crear' }} Venta
+      </button>
+      <button type="button" class="btn btn-secondary" routerLink="/sales">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

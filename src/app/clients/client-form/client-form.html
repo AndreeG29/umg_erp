@@ -1,0 +1,85 @@
+<div class="container">
+  <h2>{{ isEditMode ? '✏️ Editar Cliente' : '➕ Crear Cliente' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nombre *</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        [class.is-invalid]="isInvalid('name')"
+      />
+      <div *ngIf="isInvalid('name')" class="invalid-feedback">
+        El nombre es requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email *</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+        [class.is-invalid]="isInvalid('email')"
+      />
+      <div *ngIf="isInvalid('email')" class="invalid-feedback">
+        <span *ngIf="form.get('email')?.errors?.['required']">El email es requerido</span>
+        <span *ngIf="form.get('email')?.errors?.['email']">Formato de email inválido</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Teléfono *</label>
+      <input
+        type="text"
+        id="phone"
+        formControlName="phone"
+        class="form-control"
+        [class.is-invalid]="isInvalid('phone')"
+      />
+      <div *ngIf="isInvalid('phone')" class="invalid-feedback">
+        El teléfono es requerido
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Dirección *</label>
+      <textarea
+        id="address"
+        formControlName="address"
+        class="form-control"
+        rows="3"
+        [class.is-invalid]="isInvalid('address')"
+      ></textarea>
+      <div *ngIf="isInvalid('address')" class="invalid-feedback">
+        La dirección es requerida
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="enterprise">Empresa *</label>
+      <input
+        type="text"
+        id="enterprise"
+        formControlName="enterprise"
+        class="form-control"
+        [class.is-invalid]="isInvalid('enterprise')"
+      />
+      <div *ngIf="isInvalid('enterprise')" class="invalid-feedback">
+        La empresa es requerida
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{ isEditMode ? 'Actualizar' : 'Crear' }}
+      </button>
+      <button type="button" class="btn btn-secondary" routerLink="/clients">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

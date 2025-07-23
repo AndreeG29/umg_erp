@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>👥 Lista de Clientes</h2>
+
+    <button routerLink="/clients/crear" class="btn btn-primary">
+        ➕ Crear nuevo cliente
+    </button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Empresa</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let client of clients">
+                <td>{{ client.id }}</td>
+                <td>{{ client.name }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.phone }}</td>
+                <td>{{ client.address }}</td>
+                <td>{{ client.enterprise }}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="editClient(client.id)">Editar</button>
+                    <button class="btn btn-danger" (click)="deleteClient(client.id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

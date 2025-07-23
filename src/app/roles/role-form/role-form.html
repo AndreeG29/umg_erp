@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>{{ isEditMode ? '✏️ Editar Rol' : '➕ Crear Rol' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nombre *</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        [class.is-invalid]="isInvalid('name')"
+        placeholder="Ej: Administrador, Usuario, Editor..."
+      />
+      <div *ngIf="isInvalid('name')" class="invalid-feedback">
+        El nombre del rol es requerido
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{ isEditMode ? 'Actualizar' : 'Crear' }}
+      </button>
+      <button type="button" class="btn btn-secondary" routerLink="/roles">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

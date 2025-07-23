@@ -1,0 +1,79 @@
+<div class="dashboard">
+  <h1>Bienvenido al ERP, {{ user.name }} 👋</h1>
+  <p>Panel de control y análisis de datos</p>
+
+  <section class="stats-cards">
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div class="stat-info">
+        <h3>Ventas Totales</h3>
+        <p class="stat-value">Q{{ stats.totalSales.toLocaleString() }}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📦</div>
+      <div class="stat-info">
+        <h3>Productos</h3>
+        <p class="stat-value">{{ stats.totalProducts }}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🧑‍💼</div>
+      <div class="stat-info">
+        <h3>Clientes</h3>
+        <p class="stat-value">{{ stats.totalClients }}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">👥</div>
+      <div class="stat-info">
+        <h3>Empleados</h3>
+        <p class="stat-value">{{ stats.totalEmployees }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="charts-container">
+    <div class="chart-card">
+      <google-chart
+        [title]="salesChart.title"
+        [type]="salesChart.type"
+        [data]="salesChart.data"
+        [columns]="salesChart.columnNames"
+        [options]="salesChart.options">
+      </google-chart>
+    </div>
+    
+    <div class="chart-card">
+      <google-chart
+        [title]="productsChart.title"
+        [type]="productsChart.type"
+        [data]="productsChart.data"
+        [columns]="productsChart.columnNames"
+        [options]="productsChart.options">
+      </google-chart>
+    </div>
+  </section>
+
+  <section class="charts-container">
+    <div class="chart-card">
+      <google-chart
+        [title]="salesTrendChart.title"
+        [type]="salesTrendChart.type"
+        [data]="salesTrendChart.data"
+        [columns]="salesTrendChart.columnNames"
+        [options]="salesTrendChart.options">
+      </google-chart>
+    </div>
+    
+    <div class="chart-card">
+      <google-chart
+        [title]="categoryChart.title"
+        [type]="categoryChart.type"
+        [data]="categoryChart.data"
+        [columns]="categoryChart.columnNames"
+        [options]="categoryChart.options">
+      </google-chart>
+    </div>
+  </section>
+</div>

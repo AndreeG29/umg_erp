@@ -1,0 +1,14 @@
+<nav class="sidebar">
+  <div class="logo">ERP-UMG</div>
+
+  <ul class="nav-links">
+    <li *ngFor="let menu of visibleMenus" [routerLink]="menu.route" routerLinkActive="active">
+      <span class="icon">{{ menu.icon }}</span>
+      <span class="label">{{ menu.label }}</span>
+    </li>
+    <li (click)="logout()" style="cursor: pointer;">
+      <span class="icon">🚪</span>
+      <span class="label">Salir</span>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>🔐 Lista de Roles</h2>
+
+    <button routerLink="/roles/crear" class="btn btn-primary">
+        ➕ Crear nuevo rol
+    </button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let role of roles">
+                <td>{{ role.id }}</td>
+                <td>{{ role.name }}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="editRole(role.id)">Editar</button>
+                    <button class="btn btn-danger" (click)="deleteRole(role.id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
