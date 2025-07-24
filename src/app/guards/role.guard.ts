@@ -7,19 +7,19 @@ import { AuthService } from '../services/auth.service';
 })
 export class RoleGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const requiredRoles = route.data['roles'] as string[];
     const userData = this.authService.getUserFromToken();
-    
+
     if (!userData) {
       this.router.navigate(['/login']);
       return false;
     }
 
     const userRole = this.getRoleName(userData.role);
-    
+
     if (requiredRoles.includes(userRole)) {
       return true;
     }
@@ -30,9 +30,9 @@ export class RoleGuard implements CanActivate {
 
   private getRoleName(roleId: number): string {
     const roles: { [key: number]: string } = {
-      1: 'Admin',
-      2: 'Jefatura', 
-      3: 'Asesor'
+      8: 'Admin',
+      9: 'Jefatura',
+      10: 'Asesor'
     };
     return roles[roleId] || 'Asesor';
   }

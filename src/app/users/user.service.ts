@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface User {
   id: number;
@@ -18,7 +19,7 @@ export interface Role {
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private api = 'http://localhost:3000/api/users';
+  private api = `${environment.apiUrl}/users`;
 
   constructor(private http: HttpClient) {}
 
@@ -43,6 +44,6 @@ export class UserService {
   }
 
   getRoles(): Observable<Role[]> {
-    return this.http.get<Role[]>('http://localhost:3000/api/roles');
+    return this.http.get<Role[]>(`${environment.apiUrl}/roles`);
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +64,7 @@ export class AuthService {
   getCurrentUser(): Observable<any> {
     const userData = this.getUserFromToken();
     if (userData?.id) {
-      return this.http.get(`http://localhost:3000/api/users/${userData.id}`);
+      return this.http.get(`${environment.apiUrl}/users/${userData.id}`);
     }
     throw new Error('No user ID found in token');
   }
@@ -71,7 +72,7 @@ export class AuthService {
   getUserPermissions(): Observable<any[]> {
     const userData = this.getUserFromToken();
     if (userData?.role) {
-      return this.http.get<any[]>(`http://localhost:3000/api/roles/${userData.role}/permissions`);
+      return this.http.get<any[]>(`${environment.apiUrl}/roles/${userData.role}/permissions`);
     }
     return new Observable(observer => observer.next([]));
   }

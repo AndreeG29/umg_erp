@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Employee {
   id: number;
@@ -21,7 +22,7 @@ export interface User {
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeService {
-  private api = 'http://localhost:3000/api/employees';
+  private api = `${environment.apiUrl}/employees`;
 
   constructor(private http: HttpClient) {}
 
@@ -46,6 +47,6 @@ export class EmployeeService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:3000/api/users');
+    return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Sale {
   id: number;
@@ -42,7 +43,7 @@ export interface Product {
 
 @Injectable({ providedIn: 'root' })
 export class SaleService {
-  private api = 'http://localhost:3000/api/sales';
+  private api = `${environment.apiUrl}/sales`;
 
   constructor(private http: HttpClient) {}
 
@@ -67,15 +68,15 @@ export class SaleService {
   }
 
   getClients(): Observable<Client[]> {
-    return this.http.get<Client[]>('http://localhost:3000/api/clients');
+    return this.http.get<Client[]>(`${environment.apiUrl}/clients`);
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:3000/api/users');
+    return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:3000/api/products');
+    return this.http.get<Product[]>(`${environment.apiUrl}/products`);
   }
 
   getSaleItems(id: number): Observable<SaleItem[]> {
