@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-<<<<<<< HEAD
 import { LayoutComponent } from './layout/layout.component';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -49,10 +48,7 @@ export const routes: Routes = [
         path: 'sales',
         loadChildren: () =>
           import('./sales/sales.routes').then((m) => m.SALES_ROUTES),
-      },
-     /*
-      */
-
+      }
     ],
   },
 
@@ -67,7 +63,3 @@ export const routes: Routes = [
     redirectTo: 'auth/login',
   },
 ];
-=======
-
-export const routes: Routes = [];
->>>>>>> ce3b7ce2b09e3242213faa51d663b12687146e40

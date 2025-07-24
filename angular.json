@@ -3,7 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-<<<<<<< HEAD
     "erp-umg": {
       "projectType": "application",
       "schematics": {
@@ -11,11 +10,6 @@
           "style": "scss"
         }
       },
-=======
-    "erp_umg": {
-      "projectType": "application",
-      "schematics": {},
->>>>>>> ce3b7ce2b09e3242213faa51d663b12687146e40
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -28,10 +22,7 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-<<<<<<< HEAD
             "inlineStyleLanguage": "scss",
-=======
->>>>>>> ce3b7ce2b09e3242213faa51d663b12687146e40
             "assets": [
               {
                 "glob": "**/*",
@@ -39,11 +30,7 @@
               }
             ],
             "styles": [
-<<<<<<< HEAD
               "src/styles.scss"
-=======
-              "src/styles.css"
->>>>>>> ce3b7ce2b09e3242213faa51d663b12687146e40
             ]
           },
           "configurations": {
@@ -74,17 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-<<<<<<< HEAD
               "buildTarget": "erp-umg:build:production"
             },
             "development": {
               "buildTarget": "erp-umg:build:development"
-=======
-              "buildTarget": "erp_umg:build:production"
-            },
-            "development": {
-              "buildTarget": "erp_umg:build:development"
->>>>>>> ce3b7ce2b09e3242213faa51d663b12687146e40
             }
           },
           "defaultConfiguration": "development"
@@ -100,10 +80,7 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
-<<<<<<< HEAD
             "inlineStyleLanguage": "scss",
-=======
->>>>>>> ce3b7ce2b09e3242213faa51d663b12687146e40
             "assets": [
               {
                 "glob": "**/*",
@@ -111,11 +88,7 @@
               }
             ],
             "styles": [
-<<<<<<< HEAD
               "src/styles.scss"
-=======
-              "src/styles.css"
->>>>>>> ce3b7ce2b09e3242213faa51d663b12687146e40
             ]
           }
         }
@@ -123,10 +96,6 @@
     }
   },
   "cli": {
-<<<<<<< HEAD
     "analytics": false
-=======
-    "analytics": "6d57913e-bd22-40c0-a196-22fd82263703"
->>>>>>> ce3b7ce2b09e3242213faa51d663b12687146e40
   }
 }
