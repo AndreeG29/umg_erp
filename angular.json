@@ -23,11 +23,13 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "outputPath": "dist/erp-umg",
             "assets": [
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/_redirects"
             ],
             "styles": [
               "src/styles.scss"
@@ -85,7 +87,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/_redirects"
             ],
             "styles": [
               "src/styles.scss"
