@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProductService, Product } from '../product.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-list',
@@ -31,6 +32,26 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(id: number): void {
-    console.log(`Eliminar producto con ID ${id}`);
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción no se puede deshacer',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.delete(id).subscribe({
+          next: () => {
+            this.products = this.products.filter(p => p.id !== id);
+            Swal.fire('Eliminado', 'El producto ha sido eliminado', 'success');
+          },
+          error: (err) => {
+            console.error('Error eliminando producto:', err);
+            Swal.fire('Error', 'No se pudo eliminar el producto', 'error');
+          }
+        });
+      }
+    });
   }
 }
